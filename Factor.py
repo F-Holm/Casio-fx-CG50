@@ -19,8 +19,6 @@ Restricciones:
 - Si la entrada no es válida, el programa termina con un error.
 """
 
-import sys
-
 def prime_factors_lines(n):
     """
     Devuelve una lista de strings representando
@@ -36,12 +34,12 @@ def prime_factors_lines(n):
             exp += 1
         if exp > 0:
             if exp == 1:
-                parts.append(str(d))        # factor sin exponente
+                parts.append(str(d))                    # factor sin exponente
             else:
-                parts.append(f"{d}^{exp}")  # factor con exponente
-        d += 1 if d == 2 else 2             # optimización: después del 2 solo impares
+                parts.append("{}^{}".format(d, exp))    # factor con exponente
+        d += 1 if d == 2 else 2                         # optimización: después del 2 solo impares
     if n > 1:
-        parts.append(str(n))                # si queda un primo grande al final
+        parts.append(str(n))                            # si queda un primo grande al final
     return parts
 
 def main():
@@ -49,16 +47,17 @@ def main():
     try:
         num = int(input("Numero: "))
     except ValueError:
-        sys.exit("Error: el programa solo acepta numeros naturales")
+        print("Error: el programa solo acepta numeros naturales")
+        return
 
     if num < 1:
-        sys.exit("Error: el programa solo acepta numeros naturales (>= 1)")
+        print.exit("Error: el programa solo acepta numeros naturales (>= 1)")
+        return
 
     factors = prime_factors_lines(num)
 
-    print(f"Factor({num})\n")
+    print("Factor({})\n".format(num))
     for f in factors:
         print(f)
 
-if __name__ == "__main__":
-    main()
+main()
